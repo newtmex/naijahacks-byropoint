@@ -81,7 +81,7 @@ function updatePosts() {
     this.called = true;
 
     return function () {
-      if (working) //return console.log('working...');
+      if (working) return console.log('working...');
         working = true;
       Post.findOne().sort({ createdAt: -1 }).exec(function (err, post) {
         if (post) {
@@ -158,7 +158,7 @@ function getPostRemote() {
   return new Promise((resolve, reject) => {
     request({
       method: 'GET',
-      url: 'https://medium.com/@newtmex/latest?format=json',
+      url: 'https://medium.com/@davidconoh/latest?format=json',
     }, function (err, resp, body) {
       if (!err) {
         // Strip off unwanted stuff from the body
