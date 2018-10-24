@@ -92,7 +92,7 @@ function updatePosts() {
               // Extract params
               const { id, title, createdAt } = Post[new_post];
               // Compare if the in coming is latest
-              
+console.log(post.createdAt, createdAt)
               if (post.createdAt === createdAt) {
                 console.log('No new post');
                 working = false;
