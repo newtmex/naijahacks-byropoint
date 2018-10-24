@@ -65,7 +65,7 @@ app.post("/subscribe", (req, res) => {
 app.post('/article/latest', (req, res) => {
   let subscription = req.body;
 
-  Post.findOne().sort({ createdAt: -1 }).exec(function (err, post) {
+  Post.findOne().sort({ createdAt: 1 }).exec(function (err, post) {
     if (post) {
       pushPost_single(post, subscription);
     }
