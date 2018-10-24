@@ -151,7 +151,7 @@ updatePosts.called = false;
 // Capture an instance of updatePosts()
 updatePosts = updatePosts();
 
-setInterval(updatePosts, 5000);
+setInterval(updatePosts, 30000);
 
 // Get post
 function getPostRemote() {
