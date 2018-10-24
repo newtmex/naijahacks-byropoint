@@ -96,7 +96,7 @@ function updatePosts() {
               if (post.createdAt === createdAt) {
                 console.log('No new post');
                 working = false;
-                return
+                break
               } else {
                 // New post
                 console.log('New post found');
@@ -107,11 +107,14 @@ function updatePosts() {
                 // Get the subtitle
                 let subtitle = Post[new_post].previewContent.bodyModel.subtitle;
                 let newPost = { paragraphs, id, title, createdAt, subtitle };
-                postService.add(newPost);
-                console.log('new post added');
-
-                pushNewPost(newPost);
-                working = false
+                postService.add(newPost).then(done=>{
+                  console.log('new post added');
+                  pushNewPost(newPost);
+                  working = false
+                }).catch(err=>{
+                  console.log(err)
+                  working = false
+                });
               }
             }
           }).catch(err => {
