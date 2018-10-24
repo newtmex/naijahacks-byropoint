@@ -83,7 +83,7 @@ function updatePosts() {
     return function () {
       if (working) return console.log('working...');
         working = true;
-      Post.findOne().sort({ createdAt: -1 }).exec(function (err, post) {
+      Post.findOne().sort({ createdAt: 1 }).exec(function (err, post) {
         if (post) {
           // Post exit
           console.log('Checking for new post')
