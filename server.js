@@ -115,6 +115,7 @@ console.log(post.createdAt, createdAt)
                   console.log(err)
                   working = false
                 });
+                return
               }
             }
           }).catch(err => {
