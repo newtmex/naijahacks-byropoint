@@ -65,7 +65,7 @@ app.post("/subscribe", (req, res) => {
 app.post('/article/latest', (req, res) => {
   let subscription = req.body;
 
-  Post.findOne().sort({ createdAt: 1 }).exec(function (err, post) {
+  Post.findOne().sort({ createdAt: -1 }).exec(function (err, post) {
     if (post) {
       pushPost_single(post, subscription);
     }
@@ -83,7 +83,7 @@ function updatePosts() {
     return function () {
       if (working) return console.log('working...');
         working = true;
-      Post.findOne().sort({ createdAt: 1 }).exec(function (err, post) {
+      Post.findOne().sort({ createdAt: -1 }).exec(function (err, post) {
         if (post) {
           // Post exit
           console.log('Checking for new post')
@@ -92,7 +92,6 @@ function updatePosts() {
               // Extract params
               const { id, title, createdAt } = Post[new_post];
               // Compare if the in coming is latest
-console.log(post.createdAt, createdAt)
               if (post.createdAt === createdAt) {
                 console.log('No new post');
                 working = false;
@@ -115,7 +114,6 @@ console.log(post.createdAt, createdAt)
                   console.log(err)
                   working = false
                 });
-                return
               }
             }
           }).catch(err => {
